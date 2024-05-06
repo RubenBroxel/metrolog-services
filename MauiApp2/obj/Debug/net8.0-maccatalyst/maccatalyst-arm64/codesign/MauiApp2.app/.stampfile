@@ -1,0 +1,1 @@
+-v --force --timestamp=none --sign - --entitlements /Users/citi.ruben.magana/Documents/BROXEL-TEST/MetroLog-Maui-main/MauiApp2/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Entitlements.xcent /Users/citi.ruben.magana/Documents/BROXEL-TEST/MetroLog-Maui-main/MauiApp2/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/MauiApp2.app
