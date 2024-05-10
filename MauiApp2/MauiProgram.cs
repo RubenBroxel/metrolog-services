@@ -11,8 +11,8 @@ public static class MauiProgram
 	public static string  PATH_LOG = "/storage/emulated/0/Android/data/com.companyname.mauiapp2/";
 
 	//carpeta de los Logs de la app
-	private const string FILE_LOG_NAME = "BroxelLog";
-	private static string paths = FileSystem.CacheDirectory.ToString();
+	public const string FILE_LOG_NAME = "BroxelLog";
+	//private static string paths = FileSystem.CacheDirectory.ToString();
 
 	//clase principal del proyecto
 	public static MauiApp CreateMauiApp()
@@ -30,7 +30,7 @@ public static class MauiProgram
         {
             return new HttpClient()
             {
-                BaseAddress = new Uri("http://localhost:5264/upload/")
+                BaseAddress = new Uri("http://10.100.8.29:5264/")
             };
 
         });
@@ -41,7 +41,7 @@ public static class MauiProgram
                 {
                     options.MinLevel = LogLevel.Trace;
                     options.MaxLevel = LogLevel.Critical;
-                }) // Will write to the Debug Output
+                }) 
             .AddInMemoryLogger(
                 options =>
                 {
@@ -52,20 +52,17 @@ public static class MauiProgram
             .AddStreamingFileLogger(
                 options =>
                 {
-                    options.RetainDays = 2;
+                    options.RetainDays = 1;
                     options.FolderPath = Path.Combine( PATH_LOG, FILE_LOG_NAME);
                 });
-            /*.AddConsoleLogger(
-                options =>
-                {
-                    options.MinLevel = LogLevel.Information;
-                    options.MaxLevel = LogLevel.Critical;
-                }); // Will write to the Console Output (logcat for android)*/
 
         builder.Services.AddSingleton(LogOperatorRetriever.Instance);
 	    builder.Services.AddSingleton<MainPage>();
 
-    
+    #if DEBUG
+		builder.Logging.AddDebug();
+    #endif
+
 		return builder.Build();
 	}
 }
