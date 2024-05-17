@@ -24,6 +24,11 @@ public partial class MainPage : ContentPage
 		_httpClient = httpClient;
 	}
 
+	/// <summary>
+	/// Boton de muestra para pruebas 
+	/// </summary>
+	/// <param name="sender"></param>
+	/// <param name="e"></param>
 	private void OnCounterClicked(object sender, EventArgs e)
 	{
 		count++;
@@ -40,6 +45,11 @@ public partial class MainPage : ContentPage
 		
 	}
 
+	/// <summary>
+	/// Enviar a microservicio con la responsabilidad de enviar documentos a bucket en GCP
+	/// </summary>
+	/// <param name="sender"></param>
+	/// <param name="e"></param>
 	public async void OnSendGcpClicked(object sender, EventArgs e)
 	{
 		bool respuesta = await DisplayAlert("Alerta", "¿Esta usted de acuerdo en enviar sus actividades a Broxel?", "Acepto", "Cancelar");
@@ -57,6 +67,11 @@ public partial class MainPage : ContentPage
 		}
 	}
 
+	/// <summary>
+	/// Método para enviar archivo log a servidor
+	/// </summary>
+	/// <param name="options"></param>
+	/// <returns></returns>
 	public async Task<FileResult> PickToSend(PickOptions options)
 	{
 		try
@@ -76,6 +91,12 @@ public partial class MainPage : ContentPage
 		return null;
 	}
 
+	/// <summary>
+	/// función para enviar a servidor
+	/// </summary>
+	/// <param name="fileStream"></param>
+	/// <param name="filename"></param>
+	/// <returns></returns>
 	async Task UploadFileAsync(Stream fileStream, string filename)
 	{
 		try
